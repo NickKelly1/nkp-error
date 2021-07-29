@@ -1,5 +1,8 @@
+import * as exported from '../src/index';
+
 describe('e2e', () => {
-  it('todo', () => {
-    expect(true).toBe(true);
+  it('exports the correct functions', () => {
+    expect(exported.coerceError).toBeDefined();
+    expect(exported.trimTrace).toBeDefined();
   });
 });

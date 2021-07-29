@@ -1,3 +1,2 @@
-console.log('hello package');
-
-export * from './add';
+export * from './utils/coerce-error';
+export * from './utils/trim-trace';
