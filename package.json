@@ -1,6 +1,6 @@
 {
   "name": "@nkp/error",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Coerce an unknown error into an instance of the JavaScript Error class",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
@@ -40,6 +40,7 @@
     "eslint": "^7.31.0",
     "jest": "^27.0.6",
     "rimraf": "^3.0.2",
+    "rollup": "^2.55.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-typescript2": "^0.30.0",
