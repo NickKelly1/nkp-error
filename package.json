@@ -1,20 +1,20 @@
 {
-  "name": "@nkp/--NPM_PACKAGE_NAME--",
+  "name": "@nkp/error",
   "version": "0.0.1",
-  "description": "--PACKAGE_DESCRIPTION--",
+  "description": "Coerce an unknown error into an instance of the JavaScript Error class",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "author": "Nick Kelly",
-  "homepage": "https://github.com/NickKelly1/--GITHUB_PACKAGE_NAME--#readme",
-  "readme": "https://github.com/NickKelly1/--GITHUB_PACKAGE_NAME--#readme",
+  "homepage": "https://github.com/NickKelly1/nkp-error#readme",
+  "readme": "https://github.com/NickKelly1/nkp-error#readme",
   "license": "SEE LICENSE IN LICENSE",
   "private": false,
   "repository": {
     "type": "git",
-    "url": "--GIT_REPOSITORY--"
+    "url": "git@github.com:NickKelly1/nkp-error.git"
   },
   "bugs": {
-    "url": "https://github.com/NickKelly1/--GITHUB_PACKAGE_NAME--/issues"
+    "url": "https://github.com/NickKelly1/nkp-error/issues"
   },
   "keywords": [
     "TypeScript",
