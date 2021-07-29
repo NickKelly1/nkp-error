@@ -28,7 +28,7 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: 'config/tsconfig.build.json', }),
-      // terser(),
+      terser(),
     ],
   },
 ];
