@@ -17,7 +17,6 @@ jobs:
           node-version: 14
       - run: npm ci
       - run: npm test
-      - run: npm run build
   publish-npm:
     needs: build
     runs-on: ubuntu-latest
@@ -29,6 +28,7 @@ jobs:
           registry-url: https://registry.npmjs.org/
       - run: npm ci
       - run: npm run build
+      - run: npm run publish:prepare
       - run: npm publish ./dist --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
