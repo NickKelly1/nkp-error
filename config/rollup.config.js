@@ -12,14 +12,20 @@ export default [
     input: 'src/index.ts',
     output: [
       {
-        file: packageJson.main,
+        file: `dist/${packageJson.main}`,
         format: 'cjs',
         sourcemap: true,
       },
       {
-        file: packageJson.module,
+        file: `dist/${packageJson.module}`,
         format: 'es',
         exports: 'named',
+        sourcemap: true,
+      },
+      {
+        name: '$nkp',
+        file: `dist/${packageJson.umd}`,
+        format: 'umd',
         sourcemap: true,
       },
     ],
@@ -28,7 +34,7 @@ export default [
       resolve(),
       commonjs(),
       typescript({ tsconfig: 'config/tsconfig.build.json', }),
-      terser(),
+      // terser(),
     ],
   },
 ];

@@ -1,9 +1,10 @@
 {
   "name": "@nkp/error",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Coerce an unknown error into an instance of the JavaScript Error class",
-  "main": "dist/index.js",
-  "module": "dist/index.es.js",
+  "main": "cjs/index.js",
+  "module": "es/index.js",
+  "umd": "umd/index.js",
   "author": "Nick Kelly",
   "homepage": "https://github.com/NickKelly1/nkp-error#readme",
   "readme": "https://github.com/NickKelly1/nkp-error#readme",
@@ -20,15 +21,11 @@
     "TypeScript",
     "JavaScript"
   ],
-  "files": [
-    "dist",
-    "LICENSE"
-  ],
   "scripts": {
     "test": "jest -c config/jest.config.ts",
     "build": "rimraf dist && rollup -c config/rollup.config.js",
     "test:watch": "jest -c config/jest.config.ts --watch",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build && cp package.json dist/ && cp LICENSE dist/"
   },
   "devDependencies": {
     "@jest/types": "^26.6.2",
