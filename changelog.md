@@ -1,5 +1,11 @@
 # Changelog
 
+## 0.0.5 - 2021-06-29
+
+### Changed
+
+- Fixed README.md in npmjs.
+
 ## 0.0.4 - 2021-06-29
 
 ### Added

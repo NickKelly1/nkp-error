@@ -1,6 +1,6 @@
 {
   "name": "@nkp/error",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "description": "Coerce an unknown error into an instance of the JavaScript Error class",
   "main": "cjs/index.js",
   "module": "es/index.js",
@@ -25,7 +25,7 @@
     "test": "jest -c config/jest.config.ts",
     "build": "rimraf dist && rollup -c config/rollup.config.js",
     "test:watch": "jest -c config/jest.config.ts --watch",
-    "publish:prepare": "cp package.json dist/ && cp LICENSE dist/"
+    "publish:prepare": "cp package.json dist && cp LICENSE dist && cp README.md dist"
   },
   "devDependencies": {
     "@jest/types": "^26.6.2",
