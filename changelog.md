@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.0.6 - 2021-06-29
+
+### Changed
+
+- Upgraded readme
+- Added tests for readme examples
+- Minified export
+
 ## 0.0.5 - 2021-06-29
 
 ### Changed
