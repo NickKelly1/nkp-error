@@ -23,7 +23,7 @@ export default [
         sourcemap: true,
       },
       {
-        name: '$nkp',
+        name: '$nkp.error',
         file: `dist/${packageJson.umd}`,
         format: 'umd',
         sourcemap: true,

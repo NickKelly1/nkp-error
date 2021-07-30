@@ -21,16 +21,16 @@ npm install @nkp/error
 ### With script tags
 
 ```html
-<head>
-  <!-- insert your desired version -->
-  <script src="https://unpkg.com/browse/@nkp/error@0.0.6/"></script>
-</head>
-
+<!-- insert your desired version & SRI hash https://www.srihash.org/ -->
+<script
+  src="https://unpkg.com/@nkp/error@0.0.6/umd/index.js"
+  integrity="sha384-2T0EaJidzjSkneooaZlmNrBy6VahQDSBAQyfPpUKTD8Ngk3vRia2i93XuDufuBO1"
+  crossorigin="anonymous"></script>
 ```
 
 ## Usage
 
-### On Error instances
+### On `Error` instances
 
 When an instance of `Error` is thrown, coerceError does nothing
 
@@ -104,4 +104,4 @@ To a release a new version:
 2. Push the new version to the `master` branch on GitHub
 3. Create a `new release` on GitHub for the latest version
 
-A GitHub action will test and publishes the npm package. Note, the `dist` folder is published.
+A GitHub action run use `npm-publish.yml` to test and publish the npm package. Note, the `dist` folder is published.

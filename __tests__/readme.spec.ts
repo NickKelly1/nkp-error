@@ -9,7 +9,7 @@ describe('readme examples should work', () => {
     jest.spyOn(console, 'warn').mockImplementation(() => {});
   });
 
-  it('On Error Instances', () => {
+  it('On `Error` Instances', () => {
     function doWork() {
       throw new Error('something went wrong');
     }
