@@ -25,7 +25,7 @@
     "test": "jest -c config/jest.config.ts",
     "build": "rimraf dist && rollup -c config/rollup.config.js",
     "test:watch": "jest -c config/jest.config.ts --watch",
-    "prepublishOnly": "npm run build && cp package.json dist/ && cp LICENSE dist/"
+    "prepublishOnly": "cp package.json dist/ && cp LICENSE dist/"
   },
   "devDependencies": {
     "@jest/types": "^26.6.2",
