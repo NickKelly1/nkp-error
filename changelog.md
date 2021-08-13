@@ -1,10 +1,16 @@
 # Changelog
 
-## 0.0.7 - 2021-06-29
+## 0.0.8 - 2021-08-13
+
+### Changed
+
+- Added `"sideEffects": false` to `package.json`. Allows tree shaking in bundlers.
+
+## 0.0.7 - 2021-07-29
 
 Re-release
 
-## 0.0.6 - 2021-06-29
+## 0.0.6 - 2021-07-29
 
 ### Changed
 
@@ -12,13 +18,13 @@ Re-release
 - Added tests for readme examples
 - Minified export
 
-## 0.0.5 - 2021-06-29
+## 0.0.5 - 2021-07-29
 
 ### Changed
 
 - Fixed README.md in npmjs.
 
-## 0.0.4 - 2021-06-29
+## 0.0.4 - 2021-07-29
 
 ### Added
 
@@ -36,11 +42,11 @@ Re-release
 - Updated readme with badges and more information.
 - Temporarily disabled terser rollup plugin. Builds will temporarily not minified.
 
-## 0.0.2 - 2021-06-29
+## 0.0.2 - 2021-07-29
 
 Re-release
 
-## 0.0.1 - 2021-06-29
+## 0.0.1 - 2021-07-29
 
 ### Added
 
