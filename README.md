@@ -65,8 +65,8 @@ try {
   throw message;
 }
 catch(_error) {
-  console.log(typeof _error); // 'string'
-  const error = coerceError(_error);
+  console.log(typeof _error); // "string"
+  const err = coerceError(_error);
   console.log(error.message === message); // true
 }
 ```
