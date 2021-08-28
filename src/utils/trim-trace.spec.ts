@@ -14,14 +14,14 @@ describe('trim-trace', () => {
   it('should trim stack traces', () => {
     try {
       oneDeep();
-    } catch (error) {
+    } catch (error: unknown) {
       expect(error).toBeInstanceOf(Error);
 
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const preStack = (error as Error).stack!.split('\n');
       expect(preStack).toBeDefined();
 
-      trimTrace(error, 1);
+      trimTrace(error as Error, 1);
       // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
       const postStack = (error as Error).stack!.split('\n');
       expect(postStack).toBeDefined();

@@ -5,7 +5,6 @@
   "description": "Coerce an unknown error into an instance of the JavaScript Error class",
   "main": "cjs/index.js",
   "module": "es/index.js",
-  "umd": "umd/index.js",
   "author": "Nick Kelly",
   "homepage": "https://github.com/NickKelly1/nkp-error#readme",
   "readme": "https://github.com/NickKelly1/nkp-error#readme",

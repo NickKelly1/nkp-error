@@ -8,7 +8,7 @@ Coerce an unknown error into an instance of the Error class.
 
 ## Installation
 
-This package exports as CommonJS (default), ES Modules, and UMD.
+This package exports as CommonJS (default) and ES Modules.
 
 For ES Modules and tree shaking use a bundler that supports ES modules such as [rollup](https://rollupjs.org/guide/en/) or [webpack](https://webpack.js.org/).
 
