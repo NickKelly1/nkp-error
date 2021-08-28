@@ -1,5 +1,16 @@
 # Changelog
 
+## 0.0.9 - 2021-08-27
+
+### Changed
+
+- No longer minify exports
+- Updated tsconfig.json
+- Updated tsconfig.build.json
+- Updated jest.config.ts
+- Updated dependencies
+- Updated release.yml
+
 ## 0.0.8 - 2021-08-13
 
 ### Changed

@@ -3,9 +3,21 @@
   "exclude": [
     "../*.spec.ts",
     "../*.test.ts",
+
     "../**/*.spec.ts",
     "../**/*.test.ts",
-    "../__tests__",
+
+    "../*.spec.util.ts",
+    "../*.test.util.ts",
+    "../**/*.spec.util.ts",
+    "../**/*.test.util.ts",
+
+    "../*.util.spec.ts",
+    "../*.util.test.ts",
+    "../**/*.util.spec.ts",
+    "../**/*.util.test.ts",
+
+    "../___tests___",
     "../dist/*",
   ],
   "include": [

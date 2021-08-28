@@ -18,16 +18,6 @@ For ES Modules and tree shaking use a bundler that supports ES modules such as [
 npm install @nkp/error
 ```
 
-### With script tags
-
-```html
-<!-- insert your desired version & SRI hash https://www.srihash.org/ -->
-<script
-  src="https://unpkg.com/@nkp/error@0.0.6/umd/index.js"
-  integrity="sha384-2T0EaJidzjSkneooaZlmNrBy6VahQDSBAQyfPpUKTD8Ngk3vRia2i93XuDufuBO1"
-  crossorigin="anonymous"></script>
-```
-
 ## Usage
 
 ### On `Error` instances
