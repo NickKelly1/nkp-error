@@ -38,11 +38,10 @@ yarn add @nkp/error
 
 ### maybeError
 
-`maybeError` tries to coerce the value to an Error instance but may fail if the value is not error-like.
-
-`maybeError` returns a `Maybe` instance using the library `@nkp/maybe`.
-
-If `maybeError` returns a `Some` instance on success and a `None` instance on failure.
+- tries to coerce the value to an Error instance but may fail if the value is not error-like.
+- returns a `Maybe` instance using the library `@nkp/maybe`.
+  - returns a `Some` instance on success
+  - returns a `None` instance on failure.
 
 ```ts
 import { Maybe } from '@nkp/maybe';
@@ -66,7 +65,8 @@ try {
 
 ### alwaysError
 
-`alwaysError` always returns an `Error` instance. If the value was not `Error` like, the returned `Error` will attempt string conversion or note it could not deserialise string.
+- always returns an `Error` instance
+- if the value was not `ErrorLike`, the `alwaysError` will attempt string conversion or note it could not deserialise string.
 
 ```ts
 import { alwaysError } from '@nkp/error';
