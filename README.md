@@ -1,7 +1,7 @@
 # @nkp/error
 
 [![npm version](https://badge.fury.io/js/%40nkp%2Ferror.svg)](https://badge.fury.io/js/%40nkp%2Ferror)
-[![Node.js Package](https://github.com/NickKelly1/nkp-error/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/NickKelly1/nkp-error/actions/workflows/npm-publish.yml)
+[![Node.js Package](https://github.com/NickKelly1/nkp-error/actions/workflows/release.yml/badge.svg)](https://github.com/NickKelly1/nkp-error/actions/workflows/release.yml)
 ![snyk](https://snyk-widget.herokuapp.com/badge/npm/%40nkp%2Ferror/badge.svg)
 
 Take unknonwn types and coerce them to instances of the native JavaScript Error class.
