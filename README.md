@@ -38,9 +38,9 @@ yarn add @nkp/error
 
 ### maybeError
 
-`maybeError` tries to coerce to an Error instance but may fail if the value is not error-like.
+`maybeError` tries to coerce the value to an Error instance but may fail if the value is not error-like.
 
-`maybeError` returns a `Maybe` instance from the library `@nkp/maybe` which allows handling of failure cases.
+`maybeError` returns a `Maybe` instance using the library `@nkp/maybe`.
 
 If `maybeError` returns a `Some` instance on success and a `None` instance on failure.
 
