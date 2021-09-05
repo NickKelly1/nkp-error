@@ -1,6 +1,6 @@
 {
   "name": "@nkp/error",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "sideEffects": false,
   "description": "Coerce an unknown error into an instance of the JavaScript Error class",
   "main": "cjs/index.js",
