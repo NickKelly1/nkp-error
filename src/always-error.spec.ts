@@ -1,6 +1,6 @@
-import { coerceError } from './coerce-error';
+import { alwaysError } from './always-error';
 
-describe('coerce-error', () => {
+describe('alwaysError', () => {
   beforeEach(() => {
     // ignore warnings
     // eslint-disable-next-line @typescript-eslint/no-empty-function
@@ -8,39 +8,39 @@ describe('coerce-error', () => {
   });
 
   it('should coerce non-errors to errors', () => {
-    expect(coerceError('not an error')).toBeInstanceOf(Error);
-    expect(coerceError(true)).toBeInstanceOf(Error);
-    expect(coerceError(false)).toBeInstanceOf(Error);
-    expect(coerceError(15)).toBeInstanceOf(Error);
-    expect(coerceError(Math.PI)).toBeInstanceOf(Error);
+    expect(alwaysError('not an error')).toBeInstanceOf(Error);
+    expect(alwaysError(true)).toBeInstanceOf(Error);
+    expect(alwaysError(false)).toBeInstanceOf(Error);
+    expect(alwaysError(15)).toBeInstanceOf(Error);
+    expect(alwaysError(Math.PI)).toBeInstanceOf(Error);
     // eslint-disable-next-line @typescript-eslint/no-empty-function
-    expect(coerceError(() => {})).toBeInstanceOf(Error);
-    expect(coerceError(null)).toBeInstanceOf(Error);
-    expect(coerceError(undefined)).toBeInstanceOf(Error);
-    expect(coerceError(Symbol('not an error'))).toBeInstanceOf(Error);
-    expect(coerceError(new Date())).toBeInstanceOf(Error);
+    expect(alwaysError(() => {})).toBeInstanceOf(Error);
+    expect(alwaysError(null)).toBeInstanceOf(Error);
+    expect(alwaysError(undefined)).toBeInstanceOf(Error);
+    expect(alwaysError(Symbol('not an error'))).toBeInstanceOf(Error);
+    expect(alwaysError(new Date())).toBeInstanceOf(Error);
   });
 
   it('should preserve error-like objects', () => {
-    const helloErrorOriginal = { message: 'hello world' };
-    const helloError = coerceError(helloErrorOriginal);
+    const helloErrorOriginal = { message: 'hello world', };
+    const helloError = alwaysError(helloErrorOriginal);
     expect(helloError).toBeInstanceOf(Error);
     expect(helloError).toMatchObject(helloErrorOriginal);
 
-    const codedErrorOriginal = { message: 'someting went wrong', code: 50 };
-    const codedError = coerceError(codedErrorOriginal);
+    const codedErrorOriginal = { message: 'someting went wrong', code: 50, };
+    const codedError = alwaysError(codedErrorOriginal);
     expect(codedError).toMatchObject(codedErrorOriginal);
   });
 
   it('should not preserve non-error-like objects', () => {
-    const original = { egassem: 'dlrow olleh' };
-    const notErrorLike = coerceError(original);
+    const original = { egassem: 'dlrow olleh', };
+    const notErrorLike = alwaysError(original);
     expect(notErrorLike).not.toMatchObject(original);
     expect(notErrorLike).toBeInstanceOf(Error);
   });
 
   it('should not clone objectfunctions', () => {
-    const error = coerceError({
+    const error = alwaysError({
       message: 'with fns',
       // eslint-disable-next-line @typescript-eslint/no-empty-function
       fn1() {},
@@ -58,7 +58,7 @@ describe('coerce-error', () => {
 
   it('should not touch instances of error', () => {
     const instance = new Error();
-    const error = coerceError(instance);
+    const error = alwaysError(instance);
     expect(instance).toStrictEqual(error);
   });
 });

@@ -4,85 +4,77 @@
 [![Node.js Package](https://github.com/NickKelly1/nkp-error/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/NickKelly1/nkp-error/actions/workflows/npm-publish.yml)
 ![snyk](https://snyk-widget.herokuapp.com/badge/npm/%40nkp%2Ferror/badge.svg)
 
-Coerce an unknown error into an instance of the Error class.
+Take unknonwn types and coerce them to instances of the native JavaScript Error class.
+
+## Table of contents
+
+- [Installation](#installation)
+  - [npm](#npm)
+  - [yarn](#yarn)
+  - [Exports](#exports)
+- [Usage](#usage)
+  - [maybeError](#maybeerror)
+  - [alwaysError](#alwayserror)
 
 ## Installation
 
-This package exports as CommonJS (default) and ES Modules.
-
-For ES Modules and tree shaking use a bundler that supports ES modules such as [rollup](https://rollupjs.org/guide/en/) or [webpack](https://webpack.js.org/).
-
-### With npm
+### NPM
 
 ```sh
 npm install @nkp/error
 ```
 
+### Yarn
+
+```sh
+yarn add @nkp/error
+```
+
+### Exports
+
+`@nkp/error` targets CommonJS and ES modules. To utilise ES modules consider using a bundler like `webpack` or `rollup`.
+
 ## Usage
 
-### On `Error` instances
+### maybeError
 
-When an instance of `Error` is thrown, coerceError does nothing
+`maybeError` tries to coerce to an Error instance but fail (return a `None` instance) if the value is not error-like.
+
+`maybeError` returns a `Maybe` instance from the library `@nkp/maybe` which allows easy handling of coercion failure cases.
+
+If `maybeError` fails it returns a `None` instance. Otherwise it returns a `Some` instance.
 
 ```ts
-import { coerceError } from '@nkp/error';
+import { Maybe } from '@nkp/maybe';
 
-function doWork() {
-  throw new Error('something went wrong');
-}
+function maybeError(oldError: unknown): Maybe<Error>;
+```
+
+```ts
+import { maybeError, ErrorLike } from '@nkp/error';
+
 try {
-  doWork();
+  throw { message: 'something went wrong', } ErrorLike; 
 } catch (_err: unknown) {
-  const err: Error = coerceError(_err);
-  console.error(err);
-  // Error: something went wrong
-  //   at doWork (...
-  //   at ...
+  maybeError(_err)
+    // if failed to coerce, log the failure and create a new error instead
+    .tapNone(() => console.warn('Warning: unknown error', _err))
+    .mapNone(() => new Error('unknown error'))
+    .throw();
 }
 ```
 
-### On Non `Error` Instance
+### alwaysError
 
-`coerceError` does its best to maintain the stack trace of the thrown error.
-
-If a non `Error` instance is thrown then JavaScript cannot infer the call-stack for it. For example:
-
-``` ts
-import { coerceError } from '@nkp/error';
-const message =  'untraceable';
-try {
-  // throw a string instead of of an Error instance
-  throw message;
-}
-catch(_error) {
-  console.log(typeof _error); // "string"
-  const err = coerceError(_error);
-  console.log(error.message === message); // true
-}
-```
-
-in this case, since a `string` is thrown and not an `Error` instance, there is no way to obtain the stack trace from the thrown point. Instead, `coerceError` will start the stack trace in the `catch` block.
-
-### On Error-like Objects
-
-An error-like object is one with a string `message` property.
-
-Error-like objects that don't inherit from `Error` have their non-function properties (& properties from their prototype chain except `Object.prototype`) shallow copied onto a new Error instance. Function properties are not copied because copying bound functions may cause confusion when if mutating the error objects.
+`alwaysError` always returns an `Error` instance. If the value was not `Error` like, the returned `Error` will attempt string conversion or note it could not deserialise string.
 
 ```ts
-const throwable = {
-  message: 'someting went wrong',
-  code: 50,
-  fn: () => {},
-};
+import { alwaysError } from '@nkp/error';
+
 try {
-  throw throwable;
-} catch (_error) {
-  const error = coerceError(_error);
-  console.log(throwable === error); // false;
-  console.log(error instanceof Error); // true
-  console.log((error as any).code === 50); // true
-  console.log(!('fn' in error)); // true
+  throw 'something went wrong';
+} catch (_err: unknown) {
+  throw alwaysError(_err);
 }
 ```
 

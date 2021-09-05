@@ -6,7 +6,9 @@ export default async (): Promise<Config.InitialOptions> => ({
 
   rootDir: '../',
 
-  preset: 'ts-jest',
+  // if not using javascript files, use "ts-jest" instead
+  // preset: 'ts-jest',
+  preset: 'ts-jest/presets/js-with-ts-esm',
 
   roots: [
     '<rootDir>/src',
@@ -15,6 +17,8 @@ export default async (): Promise<Config.InitialOptions> => ({
 
   coveragePathIgnorePatterns: ['.spec.util.ts',],
 
+  coverageDirectory: '<rootDir>/coverage',
+
   // for DOM related:
   // testEnvironment: 'jsdom',
 
@@ -22,6 +26,10 @@ export default async (): Promise<Config.InitialOptions> => ({
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/config/tsconfig.spec.json',
+
+      // if not using javscript files, remove the following:
+      useESM: true,
+      extensionsToTreatAsESM: ['.js', '.ts', '.tsx', '.jsx',],
     },
   },
 

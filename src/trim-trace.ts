@@ -9,5 +9,5 @@ export function trimTrace(err: Error, by = 1): void {
   // first element is the errors name
   // second element is the trace at `coerceError`
   // rest is the callee of coerceError
-  if (stack) err.stack = [stack[0], ...stack.splice(by + 1)].join('\n');
+  if (stack) err.stack = [stack[0], ...stack.splice(by + 1),].join('\n');
 }

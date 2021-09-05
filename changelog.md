@@ -1,5 +1,20 @@
 # Changelog
 
+## 0.0.10 - 2021-09-05
+
+### Added
+
+- Added `maybeError`
+- Added tests for `maybeError`
+- Added `@nkp/maybe` as a dependency
+
+### Changed
+
+- Changed `coerceError` to `alwaysError`
+- Updated readme.md
+- Updated dependencies
+- Updated project build and testing configuration
+
 ## 0.0.9 - 2021-08-27
 
 ### Changed

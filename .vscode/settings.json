@@ -1,4 +1,5 @@
 {
+  "window.title": "${dirty}@nkp/error",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },

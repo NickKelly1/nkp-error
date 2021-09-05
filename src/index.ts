@@ -1,2 +1,2 @@
-export * from './utils/coerce-error';
-export * from './utils/trim-trace';
+export * from './maybe-error';
+export * from './trim-trace';

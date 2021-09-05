@@ -2,34 +2,39 @@ import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from 'rollup-plugin-typescript2';
-// import { terser } from 'rollup-plugin-terser';
+import json from '@rollup/plugin-json';
+import packageJson from '../package.json';
 
-// eslint-disable-next-line no-undef, @typescript-eslint/no-var-requires
-const packageJson = require('../package.json');
+/** @typedef {import('rollup').RollupOptions} RollupOptions */
 
-export default [
-  {
-    input: 'src/index.ts',
-    output: [
-      {
-        file: `dist/${packageJson.main}`,
-        format: 'cjs',
-        sourcemap: true,
-      },
-      {
-        file: `dist/${packageJson.module}`,
-        format: 'es',
-        exports: 'named',
-        sourcemap: true,
-      },
-    ],
-    plugins: [
-      peerDepsExternal(),
-      resolve(),
-      commonjs(),
-      typescript({ tsconfig: 'config/tsconfig.build.json', }),
-      // do not minify
-      // terser(),
-    ],
-  },
-];
+/** @type {RollupOptions} */
+const config = {
+  input: 'src/index.ts',
+  external: /node_modules/,
+  output: [
+    {
+      file: `dist/${packageJson.main}`,
+      interop: 'auto',
+      format: 'cjs',
+      sourcemap: false,
+    },
+    {
+      file: `dist/${packageJson.module}`,
+      interop: 'auto',
+      format: 'es',
+      exports: 'named',
+      sourcemap: false,
+    },
+  ],
+  plugins: [
+    // @ts-ignore peerDepxExternal is typed wrong
+    /** @type {Plugin} */ peerDepsExternal(),
+    resolve(),
+    commonjs(),
+    typescript({ tsconfig: 'config/tsconfig.build.json', }),
+    json(),
+  ],
+};
+
+/** @type {RollupOptions} */
+export default [config,];

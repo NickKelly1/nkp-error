@@ -1,31 +1,26 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { trimTrace } from './trim-trace';
+import { Maybe } from '@nkp/maybe';
 
 /**
  * Coerce an unknown type into an error instance
  *
  * @param oldError
  */
-export function coerceError(oldError: unknown): Error {
-  // nullabke
+export function maybeError(oldError: unknown): Maybe<Error> {
+  // nullable
   if (!oldError) {
-    const newError = new Error('unknown error');
-    console.warn('WARNING: unable to deserialise error', oldError);
-    trimTrace(newError);
-    return newError;
+    return Maybe.none;
   }
 
   // non-object
   if (typeof oldError !== 'object') {
-    const newError = new Error(String(oldError));
-    console.warn('WARNING: unexpected error type', oldError);
-    trimTrace(newError);
-    return newError;
+    return Maybe.none;
   }
 
   // is error
   if (oldError instanceof Error) {
-    return oldError;
+    return Maybe.some(oldError);
   }
 
   // error-like
@@ -46,11 +41,8 @@ export function coerceError(oldError: unknown): Error {
         (newError as any)[key] = (oldError as any)[key];
       }
     }
-    return newError;
+    return Maybe.some(newError);
   }
 
-  console.warn('WARNING: unexpected error shape', oldError);
-  const newError = new Error('unknown error');
-  trimTrace(newError);
-  return newError;
+  return Maybe.none;
 }
