@@ -8,11 +8,20 @@ import { trimTrace } from './trim-trace';
  *
  * @param oldError
  */
-export function alwaysError(oldError: unknown, opts?: { logger?: { warn: (message: string) => unknown } } ): Error {
-  // nullabke
+export function alwaysError(
+  oldError: unknown,
+  opts?: { silent?: boolean, logger?: { warn: (message: string) => unknown } }
+): Error {
+  const logger = opts?.logger ?? console;
+  const silent = opts?.silent ?? false;
+
+  // nullable
   if (!oldError) {
     const newError = new Error('unknown error');
-    opts?.logger?.warn(`[@nkp/error] WARNING: unable to deserialise error: ${String(oldError)}`);
+
+    if (!silent)
+      logger.warn(`[@nkp/error] WARNING: unable to deserialise error: ${String(oldError)}`);
+
     trimTrace(newError);
     return newError;
   }
@@ -20,7 +29,10 @@ export function alwaysError(oldError: unknown, opts?: { logger?: { warn: (messag
   // non-object
   if (typeof oldError !== 'object') {
     const newError = new Error(String(oldError));
-    opts?.logger?.warn(`[@nkp/error] WARNING: unexpected error type: ${typeof oldError}`);
+
+    if (!silent)
+      logger.warn(`[@nkp/error] WARNING: unexpected error type: ${typeof oldError}`);
+
     trimTrace(newError);
     return newError;
   }
@@ -51,7 +63,9 @@ export function alwaysError(oldError: unknown, opts?: { logger?: { warn: (messag
     return newError;
   }
 
-  opts?.logger?.warn(`[@nkp/error] WARNING: unexpected error shape: ${String(oldError)}`);
+  if (!silent)
+    logger.warn(`[@nkp/error] WARNING: unexpected error shape: ${String(oldError)}`);
+
   const newError = new Error('unknown error');
   trimTrace(newError);
   return newError;

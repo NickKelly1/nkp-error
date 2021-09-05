@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.0.14 - 2021-09-05
+
+### Changed
+
+- Updated readme.md
+- Fixed exports
+
 ## 0.0.13 - 2021-09-05
 
 ### Changed

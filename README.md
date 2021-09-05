@@ -4,7 +4,9 @@
 [![Node.js Package](https://github.com/NickKelly1/nkp-error/actions/workflows/release.yml/badge.svg)](https://github.com/NickKelly1/nkp-error/actions/workflows/release.yml)
 ![snyk](https://snyk-widget.herokuapp.com/badge/npm/%40nkp%2Ferror/badge.svg)
 
-Take unknonwn types and coerce them to instances of the native JavaScript Error class.
+Npm package that coerces an unknown values into an instance of the JavaScript `Error` class.
+
+Exposes two methods: `maybeError` and `alwaysError`.
 
 ## Table of contents
 
@@ -38,10 +40,10 @@ yarn add @nkp/error
 
 ### maybeError
 
-- tries to coerce the value to an Error instance but may fail if the value is not error-like.
-- returns a `Maybe` instance using the library `@nkp/maybe`.
+- tries to coerce the value to an Error instance but may fail if the value is not `ErrorLike`
+- returns a `Maybe` instance using the library `@nkp/maybe`
   - returns a `Some` instance on success
-  - returns a `None` instance on failure.
+  - returns a `None` instance on failure
 
 ```ts
 import { Maybe } from '@nkp/maybe';
@@ -66,7 +68,9 @@ try {
 ### alwaysError
 
 - always returns an `Error` instance
-- if the value was not `ErrorLike`, the `alwaysError` will attempt string conversion or note it could not deserialise string.
+- if the value was not `ErrorLike`:
+  - `alwaysError` will return an error with the coercion failure reason
+  - the coercion failure reason will be logged to the console
 
 ```ts
 import { alwaysError } from '@nkp/error';
@@ -75,6 +79,8 @@ try {
   throw 'something went wrong';
 } catch (_err: unknown) {
   throw alwaysError(_err);
+  // throw alwaysError(_err, { silent: true });
+  // throw alwaysError(_err, { logger: console });
 }
 ```
 
